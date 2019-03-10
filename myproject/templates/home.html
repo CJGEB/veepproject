@@ -1,0 +1,56 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>reBOOT Database</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+      </div>
+    </nav>
+
+
+    <div class="container">
+        <ol class="breadcrumb my-4">
+          <li class="breadcrumb-item active">Donations</li>
+        </ol>
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Donor</th>
+              <th>Number of Donations</th>
+              <th>Contact Information</th>
+              <th>Address</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for donor in donors %}
+              <tr>
+                <td>
+
+                  <a href="{% url 'donations_info' donor.pk %}">{{ donor.donorname }}</a>
+                  <small class = "text-muted d-block">{{ donor.invoicenum }}</small>
+
+                </td>
+                <td class = 'align-middle'>{{ donor.number_of_donations }}</td>
+                <td>
+
+                  <a class = 'align-middle'>{{ donor.donor_phone }}<a/>
+                  <small class = "text-muted d-block">{{ donor.donor_email }}</small>
+
+                </td>
+                <td class = 'align-middle'>{{ donor.donor_address }}</td>
+                <td class = 'align-middle'>{{ donor.last_updated }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </html>
