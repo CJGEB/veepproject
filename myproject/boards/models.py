@@ -44,9 +44,10 @@ class Donor(models.Model):
 
 class Item(models.Model):
     # warehousenum = models.IntegerField(unique = True)
-    invoicenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
+    # invoicenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
     warehousenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
     # invoicenum = models.IntegerField()
+    '''
     MANUFACTURER = (
     ('Apple', 'Apple'),
     ('Dell', 'Dell'),
@@ -56,7 +57,9 @@ class Item(models.Model):
     ('Google', 'Google'),
     # ('')
     )
-    manufacturer = models.CharField(max_length = 300, choices = MANUFACTURER)
+    '''
+    manufacturer = models.CharField(max_length = 300) # , choices = MANUFACTURER)
+    '''
     ITEM_TYPE = (
     ('Laptop', 'Laptop'),
     ('Desktop', 'Desktop'),
@@ -64,8 +67,11 @@ class Item(models.Model):
     ('HardDrive', 'HardDrive'),
     # ('')
     )
-    item_type = models.CharField(max_length = 200, choices = ITEM_TYPE)
+    '''
+    item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
     recieved_date = models.DateTimeField(auto_now_add = True)
+    # starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'items')
+
     def __str__(self):
         return self.warehousenum
 

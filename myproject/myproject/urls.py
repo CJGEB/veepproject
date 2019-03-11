@@ -21,8 +21,8 @@ from boards import views # added
 urlpatterns = [
     url(r'^$', views.home, name='home'), # added; path or url?
     # url(r'^admin/', admin.site.urls),  # added
-    url(r'^boards/(?P<pk>\d+)/$', views.donations_info, name='donations_info'),
-    url(r'^boards/(?P<pk>\d+)/new/$', views.new_evaluation, name='new_evaluation'),
+    url(r'^boards/(?P<pk>\d+)/$', views.donationsinfo, name='donationsinfo'),
+    url(r'^boards/(?P<pk>\d+)/new/$', views.new_donations, name='new_donations'),
     url(r'^admin/', admin.site.urls),  # this is the original
 ]
 
