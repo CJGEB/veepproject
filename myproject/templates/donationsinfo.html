@@ -1,0 +1,55 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ donors.donorname }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+    </div>
+  </nav>
+
+  <body>
+    <div class="container">
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Donors</a></li>
+        <li class="breadcrumb-item active">{{ donors.donorname }}</li>
+      </ol>
+
+      <div class="mb-4">
+        <a class="btn btn-primary" href="{% url 'new_donations' items.pk %}">New Donation</a>
+      </div>
+
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+
+            <th>Warehouse Number</th>
+            <th>Manufacturer</th>
+            <th>Type</th>
+            <th>Power Test</th>
+            <th>Staff</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in donations.items.all %}
+
+            <tr>
+              <td class = 'aligh_middle'>{{ item.warehousenum }}</td>
+              <td class = 'align-middle'>{{ item.manufacturer }}</td>
+              <td class = 'align-middle'>{{ item.item_type }}</td>
+              <td class = 'align-middle'>{{ item.power_test }}</td>
+              <td class = 'align-middle'>{{ item.starter }}</td>
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

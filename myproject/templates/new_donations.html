@@ -1,0 +1,65 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Donations</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+    </div>
+  </nav>
+
+
+  <body>
+    <div class="container">
+      <ol class="breadcrumb my-4">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Donors</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'donationsinfo' donations.pk %}">{{ donations.donorname }}</a></li>
+          <li class="breadcrumb-item active">New Donations</li>
+      </ol>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_subject">Warehouse Number</label>
+          <input type="text" class="form-control" id="id_warehousenum" name="warehousenum">
+        </div>
+        <div class="form-group">
+          <label for="id_message">Item Type</label>
+          <select type="text" class="form-control" id="id_item_type" name="item_type">
+            <option value="laptop">Laptop</option>
+            <option value="desktop">Desktop</option>
+            <option value="printer">Printer</option>
+            <option value="harddrive">HardDrive</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_message">Manufacturer</label>
+          <select type="text" class="form-control" id="id_manufacturer" name="manufacturer">
+            <option value="apple">Apple</option>
+            <option value="dell">Dell</option>
+            <option value="Google">Google</option>
+            <option value="hp">HP</option>
+            <option value="lenovo">Lenovo</option>
+            <option value="microsoft">MicroSoft</option>
+            <option value="sony">Sony</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_message">Power Test</label>
+          <select type="text" class="form-control" id="id_power_test" name="power_test" >
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Post</button>
+      </form>
+    </div>
+  </body>
+</html>
