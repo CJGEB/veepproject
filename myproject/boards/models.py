@@ -69,11 +69,15 @@ class Item(models.Model):
     )
     '''
     item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
-    recieved_date = models.DateTimeField(auto_now_add = True)
-    # starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'items')
+    POWER_TEST = (
+    ('Y', 'Pass.'),
+    ('N', 'Fail.')
+    )
+    power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')    # recieved_date = models.DateTimeField(auto_now_add = True)
+    starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'items')
 
-    def __str__(self):
-        return self.warehousenum
+    # def __str__(self):
+    #    return self.warehousenum
 
 
 class Type(models.Model):
@@ -86,7 +90,7 @@ class Test(models.Model):
         ('Y', 'Pass.'),
         ('N', 'Fail.')
     )
-    power_test = models.CharField(max_length = 100, choices = POWER_TEST)
+    power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
     tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
 
 class Evaluation(models.Model):

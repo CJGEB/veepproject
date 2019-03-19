@@ -38,10 +38,10 @@ def home(request):
 
 def donationsinfo(request, pk):
     try:
-        info = Donor.objects.get(pk=pk)
+        items = Donor.objects.get(pk=pk)
     except Donor.DoesNotExist:
         raise Http404
-    return render(request, 'donationsinfo.html', {'info': info})
+    return render(request, 'donationsinfo.html', {'items': items})
 
 def new_donations(request, pk):
     '''
@@ -57,24 +57,28 @@ def new_donations(request, pk):
         warehousenum = request.POST['warehousenum']
         item_type = request.POST['item_type']
         manufacturer = request.POST['manufacturer']
+        power_test =request.POST['power_test']
 
-        user = User.objects.first()  # TODO: get the currently logged in user
+
+        user = User.objects.first()
 
         item = Item.objects.create(
             warehousenum=warehousenum,
             # donations=donations,
             item_type=item_type,
             manufacturer=manufacturer,
-            # starter=user
+            power_test=power_test,
+            starter=user
         )
-        '''
-        evaluation = Evaluation.objects.create(
-            message=message,
-            topic=topic,
-            created_by=user
-        )
-        '''
 
-        return redirect('donationsinfo', pk=donors.pk)  # TODO: redirect to the created topic page
-
+        return redirect('donationsinfo', pk=donations.pk)
     return render(request, 'new_donations.html', {'donations': donations})
+
+
+'''
+        evaluation = Evaluation.objects.create(
+
+            evaluated_by=user
+
+        )
+'''

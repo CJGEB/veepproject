@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'controlcenter',
     'boards'
 
 ]
@@ -53,6 +53,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
+
+
+CONTROLCENTER_DASHBOARDS = (
+    ('mydash', 'boards.dashboards.MyDashboard'),
+)
+
 
 TEMPLATES = [
     {

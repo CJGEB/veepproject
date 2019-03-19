@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url # changed from path to url
+from controlcenter.views import controlcenter
 
-from boards import views # added
+from boards import views #added
 
 urlpatterns = [
     url(r'^$', views.home, name='home'), # added; path or url?
     # url(r'^admin/', admin.site.urls),  # added
-    url(r'^boards/(?P<pk>\d+)/$', views.donationsinfo, name='donationsinfo'),
-    url(r'^boards/(?P<pk>\d+)/new/$', views.new_donations, name='new_donations'),
+    url(r'^donors/(?P<pk>\d+)/$', views.donationsinfo, name='donationsinfo'),
+    url(r'^donors/(?P<pk>\d+)/new/$', views.new_donations, name='new_donations'),
     url(r'^admin/', admin.site.urls),  # this is the original
+    url(r'^admin/dashboard/', controlcenter.urls),
 ]
 
 # so this one works, i don't know why
