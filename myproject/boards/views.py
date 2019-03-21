@@ -28,13 +28,16 @@ def home(request):
 '''
 from django.shortcuts import render, get_object_or_404, redirect
 # from .models import Item
-from .models import Donor, Item, Test, Evaluation
+from .models import Donor, Item
+from tasks.models import Media_Erasure
 from django.http import Http404
 from django.contrib.auth.models import User
+
 
 def home(request):
     donors = Donor.objects.all()
     return render(request, 'home.html', {'donors': donors})
+
 
 def donationsinfo(request, pk):
     try:
@@ -42,6 +45,7 @@ def donationsinfo(request, pk):
     except Donor.DoesNotExist:
         raise Http404
     return render(request, 'donationsinfo.html', {'items': items})
+
 
 def new_donations(request, pk):
     '''
@@ -57,10 +61,9 @@ def new_donations(request, pk):
         warehousenum = request.POST['warehousenum']
         item_type = request.POST['item_type']
         manufacturer = request.POST['manufacturer']
-        power_test =request.POST['power_test']
+        power_test = request.POST['power_test']
 
-
-        user = User.objects.first()
+        user = request.user
 
         item = Item.objects.create(
             warehousenum=warehousenum,
@@ -70,6 +73,13 @@ def new_donations(request, pk):
             power_test=power_test,
             starter=user
         )
+
+        media_erasure = Media_Erasure.objects.create(
+
+            item_nbr = item,
+            complete_by = user
+        )
+
 
         return redirect('donationsinfo', pk=donations.pk)
     return render(request, 'new_donations.html', {'donations': donations})

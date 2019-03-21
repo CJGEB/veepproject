@@ -68,16 +68,19 @@ class Item(models.Model):
     # ('')
     )
     '''
+    POWER_TEST = [('Yes', 'Pass.'),
+    ('No', 'Fail.')]
     item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
-    POWER_TEST = (
-    ('Y', 'Pass.'),
-    ('N', 'Fail.')
-    )
-    power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')    # recieved_date = models.DateTimeField(auto_now_add = True)
-    starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'items')
+    power_test = models.CharField(max_length=100, choices=POWER_TEST,default =None)
+    recieved_date = models.DateTimeField(auto_now_add = True)
+    starter = models.ForeignKey(User, on_delete=models.CASCADE, default=-1, related_name='items')
 
-    # def __str__(self):
-    #    return self.warehousenum
+
+
+
+
+    def __str__(self):
+        return self.warehousenum
 
 
 class Type(models.Model):
@@ -85,15 +88,17 @@ class Type(models.Model):
     model_of_item = models.CharField(max_length = 1000)
     attribute_name = models.CharField(max_length = 2000)
 
-class Test(models.Model):
+'''class Test(models.Model):
     POWER_TEST = (
         ('Y', 'Pass.'),
         ('N', 'Fail.')
     )
+
     power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
     tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
-
-class Evaluation(models.Model):
+'''
+'''class Evaluation(models.Model):
     # evaluation_stage = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_at = models.DateTimeField(auto_now_add = True)
+'''
