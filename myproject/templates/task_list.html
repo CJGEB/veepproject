@@ -1,0 +1,47 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ option }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+        </div>
+  </nav>
+
+  <body>
+    <div class = "Container">
+      <ol class="breadcrumb my-4">
+          <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Tasks /</a> {{option}}</li>
+      </ol>
+
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Item Number</th>
+            <th>Invoice Number</th>
+            <th>Donor Name</th>
+            <th>Last Change Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for i in active_tasks %}
+
+            <tr>
+              <td class = 'align_middle'>{{ i.item_nbr }}</td>
+              <td class = 'align_middle'>{{ None }}</td>
+              <td class = 'align_middle'>{{ None }}</td>
+              <td class = 'align_middle'>{{ i.complete_date }}</td>
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

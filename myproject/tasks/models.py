@@ -15,7 +15,7 @@ class Quality_Assessment (models.Model):
     quality = models.CharField(max_length = 300)
     complete_date = models.DateTimeField(auto_now_add = True)
     complete_by = models.ForeignKey(User, on_delete = models.CASCADE)
-    comments = models.CharField(max_length = 300)
+    comments = models.CharField(max_length = 300, default=None)
 
 class Parts_Harvesting (models.Model):
     item_nbr = models.ForeignKey(Item, on_delete=models.CASCADE)
@@ -30,4 +30,4 @@ class Evaluation (models.Model):
     #TODO total_value = unit_price*Item.qty
     complete_date = models.DateTimeField(auto_now_add=True)
     complete_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    comments = models.CharField(max_length=300)
+    comments = models.CharField(max_length=300, default=None)

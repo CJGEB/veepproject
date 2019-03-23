@@ -2,6 +2,6 @@ from django.urls import path
 
 from . import views
 
-urlpatterns = [path('', views.index, name='index'),
-               path('<int:item_nbr>', views.detail, name='detail'),
-                ]
+urlpatterns = [path('', views.main_tasks_page, name='main_page'),
+               path('<str:option>', views.task_option, name='task_option')]
+
