@@ -35,27 +35,24 @@ def main_tasks_page(request):
     return render(request, 'tasks.html', {'tasks_list': tasks_list})
 
 
-def task_forms(request, option, item_nbr):
-
+def task_forms(request, option, task):
     if option == 'Evaluation':
-        return evaluation(request, item_nbr)
+        return evaluation(request, task)
     elif option == 'Media Erasure':
-        return mediaErasure(request, item_nbr)
+        return mediaErasure(request, task)
     elif option == 'Parts Harvesting':
-        return partsHarvesting(request, item_nbr)
+        return partsHarvesting(request, task)
     elif option == 'Quality Assessment':
-        return qualityAsssesment(request, item_nbr)
+        return qualityAsssesment(request, task)
     else:
         # TODO
         return HttpResponse('Tax Receipt Generation')
 
-    return HttpResponse("why u no work")
-
 
 
 #Below are the forms to fill out when user complete tasks
-def mediaErasure(request, item_nbr):
-    return None
+def mediaErasure(request, task):
+
 
 
     #TODO initiate Quality Assessment; see boards/views - new donation for reference
@@ -63,7 +60,7 @@ def mediaErasure(request, item_nbr):
     #   #fill in fields here
     #)
 
-
+    return render(request, 'MEForms.html', {'task': task})
 
 def qualityAsssesment(request, item_nbr):
 
