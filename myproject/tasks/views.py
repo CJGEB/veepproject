@@ -35,20 +35,37 @@ def main_tasks_page(request):
     return render(request, 'tasks.html', {'tasks_list': tasks_list})
 
 
+def task_forms(request, option, item_nbr):
+
+    if option == 'Evaluation':
+        return evaluation(request, item_nbr)
+    elif option == 'Media Erasure':
+        return mediaErasure(request, item_nbr)
+    elif option == 'Parts Harvesting':
+        return partsHarvesting(request, item_nbr)
+    elif option == 'Quality Assessment':
+        return qualityAsssesment(request, item_nbr)
+    else:
+        # TODO
+        return HttpResponse('Tax Receipt Generation')
+
+    return HttpResponse("why u no work")
 
 
 
 #Below are the forms to fill out when user complete tasks
-def mediaErasure(request):
-
-    #TODO initiate Quality Assessment; see boards/views - new donation for reference
-    qa = Quality_Assessment.objects.create(
-       #fill in fields here
-    )
+def mediaErasure(request, item_nbr):
     return None
 
 
-def qualityAsssesment(request):
+    #TODO initiate Quality Assessment; see boards/views - new donation for reference
+    #qa = Quality_Assessment.objects.create(
+    #   #fill in fields here
+    #)
+
+
+
+def qualityAsssesment(request, item_nbr):
 
     #TODO initiate Parts Harvesting model; see boards/views - new donation for reference
     #TODO initiate Evaluation model; see boards/views - new donation for reference
@@ -56,12 +73,13 @@ def qualityAsssesment(request):
     return None
 
 
-def evaluation(request):
+def evaluation(request, item_nbr):
     return None
 
 
-def taxReceipt(request):
+def taxReceipt(request, item_nbr):
     return None
 
 
-
+def partsHarvesting(request):
+    return None

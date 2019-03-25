@@ -13,7 +13,7 @@
   </nav>
 
   <body>
-    <div class = "Container">
+    <div class = "container">
       <ol class="breadcrumb my-4">
           <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Tasks /</a> {{option}}</li>
       </ol>
@@ -25,6 +25,7 @@
             <th>Invoice Number</th>
             <th>Donor Name</th>
             <th>Last Change Date</th>
+            <th> </th>
           </tr>
         </thead>
 
@@ -36,6 +37,11 @@
               <td class = 'align_middle'>{{ None }}</td>
               <td class = 'align_middle'>{{ None }}</td>
               <td class = 'align_middle'>{{ i.complete_date }}</td>
+              <td class = 'align_middle'>
+                <div class="mb-1">
+                  <!--placeholder link-->
+                  <a class="btn btn-primary" href="{% url 'forms' option=option item_nbr=i.item_nbr %}">Start Tasks</a>
+                </div>
             </tr>
 
           {% endfor %}
