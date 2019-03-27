@@ -31,17 +31,26 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
 
+=======
+>>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     #'controlcenter',
 
     'boards',
     'tasks'
+=======
+    'controlcenter',
+    'boards'
+
+>>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
 ]
 
 MIDDLEWARE = [
@@ -88,12 +97,17 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reBOOT Canada',
         'USER': 'postgres',
         'PASSWORD': 'danielxu0818',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+>>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
     }
 }
 

@@ -28,6 +28,7 @@ def home(request):
 '''
 from django.shortcuts import render, get_object_or_404, redirect
 # from .models import Item
+
 from .models import Donor, Item
 from tasks.models import Media_Erasure
 from django.http import Http404
@@ -39,12 +40,15 @@ def home(request):
     return render(request, 'home.html', {'donors': donors})
 
 
+
+
 def donationsinfo(request, pk):
     try:
         items = Donor.objects.get(pk=pk)
     except Donor.DoesNotExist:
         raise Http404
     return render(request, 'donationsinfo.html', {'items': items})
+
 
 
 def new_donations(request, pk):

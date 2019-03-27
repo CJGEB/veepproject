@@ -68,6 +68,7 @@ class Item(models.Model):
     # ('')
     )
     '''
+
     POWER_TEST = [('Yes', 'Pass.'),
     ('No', 'Fail.')]
     item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
@@ -83,16 +84,22 @@ class Item(models.Model):
         return self.warehousenum
 
 
+
 class Type(models.Model):
     # type_of_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'types')
     model_of_item = models.CharField(max_length = 1000)
     attribute_name = models.CharField(max_length = 2000)
 
+
 '''class Test(models.Model):
+=======
+class Test(models.Model):
+>>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
     POWER_TEST = (
         ('Y', 'Pass.'),
         ('N', 'Fail.')
     )
+<<<<<<< HEAD
 
     power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
     tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
