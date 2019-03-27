@@ -15,12 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url # changed from path to url
-<<<<<<< HEAD
+
 from django.urls import include, path
 #from controlcenter.views import controlcenter
-=======
-from controlcenter.views import controlcenter
->>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
 
 from boards import views #added
 
@@ -30,13 +27,10 @@ urlpatterns = [
     url(r'^donors/(?P<pk>\d+)/$', views.donationsinfo, name='donationsinfo'),
     url(r'^donors/(?P<pk>\d+)/new/$', views.new_donations, name='new_donations'),
     url(r'^admin/', admin.site.urls),  # this is the original
-<<<<<<< HEAD
+
     #url(r'^admin/dashboard/', controlcenter.urls),
     url(r'^tasks/', include('tasks.urls'))
 
-=======
-    url(r'^admin/dashboard/', controlcenter.urls),
->>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
 ]
 
 # so this one works, i don't know why
