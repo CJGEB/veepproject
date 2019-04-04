@@ -48,27 +48,11 @@ class Item(models.Model):
     warehousenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
     invoice_nbr = models.CharField(max_length = 10, default = 0)
 
-    '''
-    MANUFACTURER = (
-    ('Apple', 'Apple'),
-    ('Dell', 'Dell'),
-    ('HP', 'HP'),
-    ('MicroSoft', 'MicroSoft'),
-    ('Lenovo', 'Lenovo'),
-    ('Google', 'Google'),
-    # ('')
-    )
-    '''
+    
+    
     manufacturer = models.CharField(max_length = 300) # , choices = MANUFACTURER)
-    '''
-    ITEM_TYPE = (
-    ('Laptop', 'Laptop'),
-    ('Desktop', 'Desktop'),
-    ('Printer', 'Printer'),
-    ('HardDrive', 'HardDrive'),
-    # ('')
-    )
-    '''
+    
+    
 
     POWER_TEST = [('Yes', 'Pass.'),
     ('No', 'Fail.')]
