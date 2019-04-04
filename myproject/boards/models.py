@@ -38,7 +38,7 @@ class Donor(models.Model):
     donor_phone = models.CharField(max_length = 100)
     donor_address = models.CharField(max_length = 2000)
     last_updated = models.DateTimeField(auto_now_add = True)
-    # item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'donors')
+    #item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'item')
     starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'donors')
 
 
@@ -46,7 +46,8 @@ class Item(models.Model):
     # warehousenum = models.IntegerField(unique = True)
     # invoicenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
     warehousenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
-    # invoicenum = models.IntegerField()
+    invoice_nbr = models.CharField(max_length = 10, default = 0)
+
     '''
     MANUFACTURER = (
     ('Apple', 'Apple'),
@@ -73,11 +74,9 @@ class Item(models.Model):
     ('No', 'Fail.')]
     item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
     power_test = models.CharField(max_length=100, choices=POWER_TEST,default =None)
-    recieved_date = models.DateTimeField(auto_now_add = True)
+    received_date = models.DateTimeField(auto_now_add = True)
     starter = models.ForeignKey(User, on_delete=models.CASCADE, default=-1, related_name='items')
-
-
-
+    invoice_nbr = models.ForeignKey(Donor, on_delete=models.CASCADE, default=-1, related_name='donor')
 
 
     def __str__(self):
@@ -97,8 +96,8 @@ class Test(models.Model):
 >>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
     POWER_TEST = (
         ('Y', 'Pass.'),
-        ('N', 'Fail.')
     )
+        ('N', 'Fail.')
 <<<<<<< HEAD
 
     power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')

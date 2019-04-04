@@ -9,6 +9,8 @@ from django.http import HttpResponse
 def home(request):
     return HttpResponse('Welcome to reBOOT Canada!')
 '''
+
+
 '''
 # below, copyed from tutorial, with modification
 
@@ -31,6 +33,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Donor, Item
 from tasks.models import Media_Erasure
+from tasks.status import updateStatus
 from django.http import Http404
 from django.contrib.auth.models import User
 
@@ -44,10 +47,11 @@ def home(request):
 
 def donationsinfo(request, pk):
     try:
-        items = Donor.objects.get(pk=pk)
+        invoice = Donor.objects.get(pk=pk)
+        items = Item.objects.filter(invoice_nbr=invoice)
     except Donor.DoesNotExist:
         raise Http404
-    return render(request, 'donationsinfo.html', {'items': items})
+    return render(request, 'donationsinfo.html', {'items': items, 'pk':pk})
 
 
 
@@ -75,7 +79,8 @@ def new_donations(request, pk):
             item_type=item_type,
             manufacturer=manufacturer,
             power_test=power_test,
-            starter=user
+            starter=user,
+            invoice_nbr=donations
         )
 
         media_erasure = Media_Erasure.objects.create(

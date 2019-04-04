@@ -31,3 +31,8 @@ class Evaluation (models.Model):
     complete_date = models.DateTimeField(auto_now_add=True)
     complete_by = models.ForeignKey(User, on_delete=models.CASCADE)
     comments = models.CharField(max_length=300, default=None)
+
+class Transaction (models.Model):
+    item_br = models.ForeignKey(Item, on_delete=models.CASCADE)
+    status = models.CharField(max_length = 15)
+    timestamp = models.DateTimeField(auto_now_add = True)

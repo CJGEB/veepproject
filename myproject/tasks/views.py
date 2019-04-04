@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from .models import *
+from .status import *
+from boards.models import Donor
 
 def index(request):
     return HttpResponse('Hello %s, Here are your tasks for today' % request.user.get_short_name())
@@ -19,8 +21,7 @@ def task_option(request, option):
     elif option == 'Quality Assessment':
         active = Quality_Assessment.objects.filter(complete_by__isnull=False)
     else:
-        # TODO
-        return HttpResponse('Tax Receipt Generation')
+        return render(request, 'tax_receipt.html')
 
     return render(request, 'task_list.html', {'option': option, 'active_tasks': active})
 
@@ -60,6 +61,8 @@ def mediaErasure(request, task):
     #   #fill in fields here
     #)
 
+    updateStatus(Item, 'media erasure')
+
     return render(request, 'MEForms.html', {'task': task})
 
 def qualityAsssesment(request, item_nbr):
@@ -67,16 +70,20 @@ def qualityAsssesment(request, item_nbr):
     #TODO initiate Parts Harvesting model; see boards/views - new donation for reference
     #TODO initiate Evaluation model; see boards/views - new donation for reference
 
+    updateStatus(Item, 'qualtify assessment')
     return None
 
 
 def evaluation(request, item_nbr):
     return None
 
+    updateStatus(Item, 'complete')
 
-def taxReceipt(request, item_nbr):
+def taxReceipt(request):
     return None
 
 
 def partsHarvesting(request):
     return None
+
+    updateStatus(Item, 'qualtify assessment')
