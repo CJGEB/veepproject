@@ -51,7 +51,7 @@ def donationsinfo(request, pk):
         items = Item.objects.filter(invoice_nbr=invoice)
     except Donor.DoesNotExist:
         raise Http404
-    return render(request, 'donationsinfo.html', {'items': items, 'pk':pk})
+    return render(request, 'donationsinfo.html', {'items': items, 'invoice':invoice})
 
 
 
@@ -91,7 +91,7 @@ def new_donations(request, pk):
 
 
         return redirect('donationsinfo', pk=donations.pk)
-    return render(request, 'new_donations.html', {'donations': donations})
+    return render(request, 'new_donations.html', {'donations': donations, 'pk': donations.pk})
 
 
 '''

@@ -16,11 +16,11 @@
     <div class="container">
       <ol class="breadcrumb my-4">
         <li class="breadcrumb-item"><a href="{% url 'home' %}">Donors</a></li>
-        <li class="breadcrumb-item active">{{ donors.donorname }}</li>
+        <li class="breadcrumb-item active">{{ invoice.donorname }}</li>
       </ol>
 
       <div class="mb-4">
-        <a class="btn btn-primary" >New Donation</a>
+        <a class="btn btn-primary" href="{% url 'new_donations' pk=invoice.id %}">New Donation</a>
       </div>
 
       <table class="table">
