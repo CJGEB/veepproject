@@ -1,36 +1,34 @@
 {% load static %}<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="utf-8">
-    <title>Forms: Media Erasure</title>
+    <title>New Donations</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
   </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
-      </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+    </div>
+  </nav>
 
-<table class="table">
-        <thead class="thead-inverse">
-          <tr>
-            <th>Item Number</th>
 
-            <th> </th>
-          </tr>
-        </thead>
+  <body>
+    <div class="container">
 
-        <tbody>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_message">Complete?</label>
+          <select type="text" class="form-control" id="id_power_test" name="complete" >
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
 
-            <tr>
-              <td class = 'align_middle'>{{ task }}</td>
-            </tr>
+        <button type="submit" class="btn btn-success">Post</button>
+      </form>
 
-        </tbody>
-      </table>
-
-</body>
+    </div>
+  </body>
 </html>

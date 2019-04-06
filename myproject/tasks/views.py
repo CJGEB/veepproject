@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
-from .models import *
+from django.http import HttpResponse, Http404
+from task.models import *
 from .status import *
 from boards.models import Donor
 
@@ -21,7 +21,7 @@ def task_option(request, option):
     elif option == 'Quality Assessment':
         active = Quality_Assessment.objects.filter(complete_by__isnull=False)
     else:
-        return render(request, 'tax_receipt.html')
+        return Http404
 
     return render(request, 'task_list.html', {'option': option, 'active_tasks': active})
 
@@ -31,8 +31,7 @@ def main_tasks_page(request):
     tasks_list = ['Media Erasure',
                   'Quality Assessment',
                   'Parts Harvesting',
-                  'Evaluation',
-                  'Tax Receipt Generation'] #TODO can be adjusted based on user permission
+                  'Evaluation'] #TODO can be adjusted based on user permission
     return render(request, 'tasks.html', {'tasks_list': tasks_list})
 
 
@@ -40,14 +39,15 @@ def task_forms(request, option, task):
     if option == 'Evaluation':
         return evaluation(request, task)
     elif option == 'Media Erasure':
-        return mediaErasure(request, task)
+        return mediaErasure(request,task)
     elif option == 'Parts Harvesting':
         return partsHarvesting(request, task)
     elif option == 'Quality Assessment':
         return qualityAsssesment(request, task)
     else:
         # TODO
-        return HttpResponse('Tax Receipt Generation')
+        return Http404
+
 
 
 
@@ -61,23 +61,24 @@ def mediaErasure(request, task):
     #   #fill in fields here
     #)
 
-    updateStatus(Item, 'media erasure')
+    if request.method == 'POST':
+        if request.POST['complete'] == 'yes':
+            task.complete = True
+            task.save()
 
     return render(request, 'MEForms.html', {'task': task})
+
+
+
 
 def qualityAsssesment(request, item_nbr):
 
     #TODO initiate Parts Harvesting model; see boards/views - new donation for reference
     #TODO initiate Evaluation model; see boards/views - new donation for reference
-
-    updateStatus(Item, 'qualtify assessment')
     return None
-
 
 def evaluation(request, item_nbr):
     return None
-
-    updateStatus(Item, 'complete')
 
 def taxReceipt(request):
     return None
@@ -85,5 +86,3 @@ def taxReceipt(request):
 
 def partsHarvesting(request):
     return None
-
-    updateStatus(Item, 'qualtify assessment')
