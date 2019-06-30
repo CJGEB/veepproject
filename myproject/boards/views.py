@@ -32,7 +32,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from .models import Item
 
 from .models import Donor, Item
-from .models import Media_Erasure
+from tasks.models import Media_Erasure
 from django.http import Http404
 from django.contrib.auth.models import User
 

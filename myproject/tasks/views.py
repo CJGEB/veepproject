@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, Http404
-from task.models import *
+from .models import *
 from .status import *
 from boards.models import Donor
 
