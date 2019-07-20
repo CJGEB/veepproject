@@ -73,7 +73,7 @@ class Item(models.Model):
     POWER_TEST = [('Yes', 'Pass.'),
     ('No', 'Fail.')]
     item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
-    power_test = models.CharField(max_length=100, choices=POWER_TEST,default =None)
+    power_test = models.CharField(max_length=100, choices=POWER_TEST,default ='No')
     received_date = models.DateTimeField(auto_now_add = True)
     starter = models.ForeignKey(User, on_delete=models.CASCADE, default=-1, related_name='items')
     invoice_nbr = models.ForeignKey(Donor, on_delete=models.CASCADE, default=-1, related_name='donor')
