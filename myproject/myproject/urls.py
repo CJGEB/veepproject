@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),  # this is the original
 
     #url(r'^admin/dashboard/', controlcenter.urls),
-    url(r'^tasks/', include('tasks.urls'))
+    url(r'^tasks/', include('tasks.urls')),
     url(r'^donors/(?P<pk>\d+)/detail/$', views.detail_info, name='detail_info')
 
 ]
