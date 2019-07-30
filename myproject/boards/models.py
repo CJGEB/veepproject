@@ -43,6 +43,7 @@ class Donor(models.Model):
 
 
 class Item(models.Model):
+    '''
     # warehousenum = models.IntegerField(unique = True)
     # invoicenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
     warehousenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
@@ -81,16 +82,56 @@ class Item(models.Model):
 
     def __str__(self):
         return self.warehousenum
+    '''
+    warehousenum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
+    manufacturer = models.CharField(max_length = 300) # , choices = MANUFACTURER)
+    item_model = models.CharField(max_length = 200)
+    item_type = models.CharField(max_length = 200) # , choices = ITEM_TYPE)
+
+    # recieved_date = models.DateTimeField(auto_now_add = True)
+
+    # starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'items')
+
+    starter = models.ForeignKey(User, on_delete=models.CASCADE, default=-1, related_name='items')
+    invoice_nbr = models.ForeignKey(Donor, on_delete=models.CASCADE, default=-1, related_name='donor')
+
+    class Type(models.Model):
+    # type_of_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'types')
+    serialnum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
+    cpu_type = models.CharField(max_length = 200)
+    speed = models.CharField(max_length = 200)
+    memory_mb = models.CharField(max_length = 200)
+    hd_size = models.CharField(max_length = 200)
+    screen_size = models.CharField(max_length = 200)
+    cd_type = models.CharField(max_length = 200)
+    operating_system = models.CharField(max_length = 200)
+    power_test = models.CharField(max_length = 100, default='--')
+
+    # starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='types')
+    warehouse_nbr = models.ForeignKey(Item, on_delete=models.CASCADE, default=-1, related_name='item' )
+
+class Test(models.Model):
+    POWER_TEST = (
+        ('Y', 'Pass.'),
+        ('N', 'Fail.')
+    )
+    power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
+    tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
+
+class Evaluation(models.Model):
+    # evaluation_stage = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'evaluation')
+    evaluated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'evaluation')
+    evaluated_at = models.DateTimeField(auto_now_add = True)
 
 
-
+'''
 class Type(models.Model):
     # type_of_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'types')
     model_of_item = models.CharField(max_length = 1000)
     attribute_name = models.CharField(max_length = 2000)
 
 
-'''class Test(models.Model):
+class Test(models.Model):
 =======
 class Test(models.Model):
 >>>>>>> 734fa61af771c94121a265cc4894f5f5d443cc9e
@@ -102,9 +143,10 @@ class Test(models.Model):
 
     power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
     tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
-'''
-'''class Evaluation(models.Model):
+
+class Evaluation(models.Model):
     # evaluation_stage = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_at = models.DateTimeField(auto_now_add = True)
 '''
+
