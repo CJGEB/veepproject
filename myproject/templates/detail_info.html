@@ -1,0 +1,60 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ items.warehousenum }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">reBOOT Canada Database</a>
+    </div>
+  </nav>
+
+  <body>
+    <div class="container">
+
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+
+            <th>Serial Number</th>
+            <th>CPU Type</th>
+            <th>Speed</th>
+            <th>Memory</th>
+            <th>HD Size</th>
+            <th>Screen Size</th>
+            <th>CD Type</th>
+            <th>Operating System</th>
+            <th>Power Test</td>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for type in types.all %}
+
+            <tr>
+
+              <td class = 'align-middle'>{{ type.serialnum }}</td>
+              <td class = 'align-middle'>{{ type.cpu_type }}</td>
+              <td>blah</td>
+              <td class = 'align-middle'>{{ type.memory_mb }}</td>
+              <td class = 'align-middle'>{{ type.hd_size }}</td>
+              <td class = 'align-middle'>{{ type.screen_size }}</td>
+              <td class = 'align-middle'>{{ type.cd_type }}</td>
+              <td class = 'align-middle'>{{ type.operating_system }}</td>
+              <td class = 'align-middle'>{{ type.power_test }}</td>
+
+
+
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
