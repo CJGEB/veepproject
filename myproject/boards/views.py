@@ -31,7 +31,7 @@ def home(request):
 from django.shortcuts import render, get_object_or_404, redirect
 # from .models import Item
 
-from .models import Donor, Item, Type, Evaluation
+from .models import Donor, Item, Type #Evaluation
 from tasks.models import Media_Erasure
 from tasks.status import updateStatus
 from django.http import Http404
