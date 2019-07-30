@@ -20,7 +20,7 @@
       </ol>
 
       <div class="mb-4">
-        <a class="btn btn-primary" >New Donation</a>
+        <a class="btn btn-primary" href="{% url 'new_donations' pk=invoice.id %}">New Donation</a>
       </div>
 
       <table class="table">
@@ -30,7 +30,8 @@
             <th>Warehouse Number</th>
             <th>Manufacturer</th>
             <th>Type</th>
-            <th>Power Test</th>
+            <th>Model</th>
+            <th>Value</th>
             <th>Staff</th>
 
           </tr>
@@ -39,11 +40,17 @@
           {% for item in items.all %}
 
             <tr>
-              <td class = 'aligh_middle'>{{ item.warehousenum }}</td>
+
+              <td>
+                <a href="{% url 'detail_info' pk=item.id %}">{{ item.warehousenum }}</a>
+              </td>
+
               <td class = 'align-middle'>{{ item.manufacturer }}</td>
               <td class = 'align-middle'>{{ item.item_type }}</td>
-              <td class = 'align-middle'>{{ item.power_test }}</td>
+              <td class = 'align-middle'>{{ item.item_model }}</td>
+              <td>0</td>
               <td class = 'align-middle'>{{ item.starter }}</td>
+
             </tr>
 
           {% endfor %}
@@ -53,3 +60,4 @@
     </div>
   </body>
 </html>
+
