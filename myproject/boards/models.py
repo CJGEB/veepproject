@@ -118,14 +118,15 @@ class Test(models.Model):
     power_test = models.CharField(max_length = 100, choices = POWER_TEST, default='--')
     tested_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'tests')
 
+'''
 class Evaluation(models.Model):
     # evaluation_stage = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'evaluation')
     evaluated_at = models.DateTimeField(auto_now_add = True)
-
+'''
 
 '''
-class Type(models.Model):
+class Type(models.Model).tables ?TABLE?:
     # type_of_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'types')
     model_of_item = models.CharField(max_length = 1000)
     attribute_name = models.CharField(max_length = 2000)
