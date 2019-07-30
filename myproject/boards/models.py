@@ -97,18 +97,18 @@ class Item(models.Model):
 
     class Type(models.Model):
     # type_of_item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'types')
-    serialnum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
-    cpu_type = models.CharField(max_length = 200)
-    speed = models.CharField(max_length = 200)
-    memory_mb = models.CharField(max_length = 200)
-    hd_size = models.CharField(max_length = 200)
-    screen_size = models.CharField(max_length = 200)
-    cd_type = models.CharField(max_length = 200)
-    operating_system = models.CharField(max_length = 200)
-    power_test = models.CharField(max_length = 100, default='--')
+        serialnum = models.CharField(validators=[MinLengthValidator(10)], max_length = 10, blank = False)
+        cpu_type = models.CharField(max_length = 200)
+        speed = models.CharField(max_length = 200)
+        memory_mb = models.CharField(max_length = 200)
+        hd_size = models.CharField(max_length = 200)
+        screen_size = models.CharField(max_length = 200)
+        cd_type = models.CharField(max_length = 200)
+        operating_system = models.CharField(max_length = 200)
+        power_test = models.CharField(max_length = 100, default='--')
 
     # starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='types')
-    warehouse_nbr = models.ForeignKey(Item, on_delete=models.CASCADE, default=-1, related_name='item' )
+        warehouse_nbr = models.ForeignKey(Item, on_delete=models.CASCADE, default=-1, related_name='item' )
 
 class Test(models.Model):
     POWER_TEST = (
