@@ -51,10 +51,9 @@ def donationsinfo(request, pk):
         items = Item.objects.filter(invoice_nbr=invoice)
         ware = Item.objects.get(pk=pk)
         types = Type.objects.filter(warehouse_nbr=ware)
-   
     except Donor.DoesNotExist:
         raise Http404
-    return render(request, 'donationsinfo.html', {'items': items, 'pk':pk})
+    return render(request, 'donationsinfo.html', {'items': items, 'invoice':invoice, 'ware': ware, 'types': types})
 
 
 
