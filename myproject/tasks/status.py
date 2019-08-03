@@ -6,18 +6,18 @@ from .models import *
 def updateStatus(item_nbr, option):
     if option == 'initial':
         Transaction.object.create(
-            item_nbr = item_nbr,
+            item_nbr = item_nbr.pk,
             status = 'media erasure'
         )
     elif option == 'media erasure':
         Transaction.objects.filter(item_nbr=item_nbr).update(status=='quality assessment')
     elif option == 'parts harvesting':
         #optional step; initiated by specifying parts harvesting
-        Transaction.objects.filter(item_nbr=item_nbr).update(status=='parts harvesting')
+        Transaction.objects.filter(item_nbr=item_nbr.pk).update(status=='parts harvesting')
     elif option == 'quality assessment':
-        Transaction.objects.filter(item_nbr=item_nbr).update(status=='evaluation')
+        Transaction.objects.filter(item_nbr=item_nbr.pk).update(status=='evaluation')
     else:
-        Transaction.objects.filter(item_nbr=item_nbr).update(status == 'complete')
+        Transaction.objects.filter(item_nbr=item_nbr.pk).update(status == 'complete')
 
     return True
 

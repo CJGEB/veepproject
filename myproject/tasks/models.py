@@ -33,6 +33,6 @@ class Evaluation (models.Model):
     comments = models.CharField(max_length=300, default=None)
 
 class Transaction (models.Model):
-    item_br = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item_nbr = models.ForeignKey(Item, on_delete=models.CASCADE)
     status = models.CharField(max_length = 15)
     timestamp = models.DateTimeField(auto_now_add = True)
