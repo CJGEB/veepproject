@@ -126,6 +126,12 @@ def new_donations(request, pk):
         return redirect('donationsinfo', pk=donations.pk)
     return render(request, 'new_donations.html', {'donations': donations})
 
+def dashboard(request, pk):
+    #If valid user
+
+    return render(request, 'dashboard.html', {})
+
+
 def detail_info(request, pk):
     '''
     detailinfo = Type.objects.get(pk=pk)
