@@ -26,6 +26,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),  # added
     url(r'^donors/(?P<pk>\d+)/$', views.donationsinfo, name='donationsinfo'),
     url(r'^donors/(?P<pk>\d+)/new/$', views.new_donations, name='new_donations'),
+    url(r'^dashboard/(?P<pk>\d+)/$', views.dashboard, name='dashboard'),
     url(r'^admin/', admin.site.urls),  # this is the original
 
     #url(r'^admin/dashboard/', controlcenter.urls),
