@@ -33,9 +33,9 @@
           {% for i in active_tasks %}
 
             <tr>
-              <td class = 'align_middle'>{{ i.item_nbr }}</td>
-              <td class = 'align_middle'>{{ None }}</td>
-              <td class = 'align_middle'>{{ None }}</td>
+              <td class = 'align_middle'>{{ i.item_nbr.warehousenum }}</td>
+              <td class = 'align_middle'>{{ i.item_nbr.invoice_nbr.invoicenum }}</td>
+              <td class = 'align_middle'>{{ i.item_nbr.invoice_nbr.donorname }}</td>
               <td class = 'align_middle'>{{ i.complete_date }}</td>
               <td class = 'align_middle'>
                 <div class="mb-1">

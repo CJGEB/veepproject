@@ -61,7 +61,7 @@ def mediaErasure(request, task):
     #   #fill in fields here
     #)
 
-    ç#updateStatus(request, 'media erasure')
+    updateStatus(task, 'media erasure')
 
 
     return render(request, 'MEForms.html', {'task': task})
